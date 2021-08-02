@@ -1,0 +1,21 @@
+
+1. implement specification
+2. build (check project) on github
+3. completed pruduct Api 
+
+
+4. Login / logout 
+4.1 registratin
+4.2 login / logut 
+4.3 user devices created in a future
+5. users crud api 
+6. check roles 
+
+7. Docker / docker hub
+
+
+--------------
+8 soap communication 
+9 Entitymanager 
+
+ 
