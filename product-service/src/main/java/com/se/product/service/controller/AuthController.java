@@ -5,7 +5,7 @@ import com.se.product.service.model.payload.JwtAuthenticationResponse;
 import com.se.product.service.model.payload.LoginRequest;
 import com.se.product.service.model.CustomUserDetails;
 import com.se.product.service.security.JwtTokenProvider;
-import com.se.product.service.service.AuthService;
+import com.se.product.service.service.impl.AuthServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,11 +27,11 @@ import javax.validation.Valid;
 public class AuthController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
-    private final AuthService authService;
+    private final AuthServiceImpl authService;
     private final JwtTokenProvider tokenProvider;
 
 
-    public AuthController(AuthService authService, JwtTokenProvider tokenProvider) {
+    public AuthController(AuthServiceImpl authService, JwtTokenProvider tokenProvider) {
         this.authService = authService;
         this.tokenProvider = tokenProvider;
     }

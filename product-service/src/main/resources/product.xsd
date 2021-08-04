@@ -26,4 +26,30 @@
             <xs:element name="code" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="getCategoryByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCategoryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="category" type="tns:category"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="category">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
 </xs:schema>

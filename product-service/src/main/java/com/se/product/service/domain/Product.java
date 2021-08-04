@@ -1,24 +1,22 @@
 package com.se.product.service.domain;
 
+import com.se.product.service.domain.audit.DateAudit;
 import com.se.product.service.validation.annotation.NullOrNotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product  extends DateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +28,34 @@ public class Product {
 
     @OneToMany(mappedBy = "product"
             ,fetch = FetchType.LAZY )
-    private Set<Price> prices = new HashSet<Price>();
+    private Set<Price> prices = new HashSet<>();
 
-    public void addChild(Price price) {
+    @OneToMany(mappedBy = "product"
+            ,fetch = FetchType.EAGER )
+    private Set<Category> categories = new HashSet<>();
+
+    public void addCategory(Category category) {
+        if(categories==null){
+            categories  = new HashSet<>();
+        }
+        categories.add(category);
+        category.setProduct(this);
+    }
+
+    public void removeCategory(Category category) {
+        categories.remove(category);
+        category.setProduct(null);
+    }
+
+    public void addPrice(Price price) {
+        if(prices  ==null){
+            prices = new HashSet<>();
+        }
         prices.add(price);
         price.setProduct(this);
     }
 
-    public void removeChild(Price comment) {
+    public void removePrice(Price comment) {
         prices.remove(comment);
         comment.setProduct(null);
     }

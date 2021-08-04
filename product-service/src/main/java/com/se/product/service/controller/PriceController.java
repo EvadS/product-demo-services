@@ -1,6 +1,6 @@
 package com.se.product.service.controller;
 
-import com.se.product.service.controller.base.PriceControllerBase;
+import com.se.product.service.controller.base.PriceApi;
 import com.se.product.service.model.PriceRequest;
 import com.se.product.service.model.PriceResponse;
 import com.se.product.service.service.PriceService;
@@ -18,9 +18,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+import static com.se.product.service.config.ApplicationConstant.API_VERSION;
+
 @RestController
-@RequestMapping("/api/price")
-public class PriceController implements PriceControllerBase {
+@RequestMapping("/api/price" + API_VERSION)
+public class PriceController implements PriceApi {
 
     private static Logger logger = LoggerFactory.getLogger(PriceController.class);
     private final PriceService priceService;
@@ -63,6 +65,8 @@ public class PriceController implements PriceControllerBase {
     public ResponseEntity<PriceResponse> getById(
             @PathVariable(value = "id") Long priceId) {
         logger.debug("handle get price by id: {}",priceId);
+
+        logger.info("Handle get price request. Request:{}", priceId);
 
         PriceResponse priceResponse = priceService.getById(priceId);
         return ResponseEntity.ok(priceResponse);

@@ -1,11 +1,10 @@
 package com.se.product.service.controller;
 
 
-import com.se.product.service.controller.base.CategoryBase;
+import com.se.product.service.controller.base.CategoryApi;
 import com.se.product.service.model.CategoryRequest;
 import com.se.product.service.model.CategoryResponse;
 import com.se.product.service.model.CategoryResponseList;
-import com.se.product.service.model.PriceResponse;
 import com.se.product.service.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import static com.se.product.service.config.ApplicationConstant.API_VERSION;
+
 @RestController
-@RequestMapping("/api/category")
-public class CategoryController implements CategoryBase {
+@RequestMapping("/api/category" + API_VERSION)
+public class CategoryController implements CategoryApi {
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
     private final CategoryService categoryService;
@@ -30,7 +31,7 @@ public class CategoryController implements CategoryBase {
     @Override
     @PostMapping
     public ResponseEntity<CategoryResponse> create(@Valid CategoryRequest request) {
-        logger.debug("handle create category request {}", request);
+        logger.info("handle create category request {}", request);
 
         CategoryResponse categoryResponse = categoryService.create(request);
         return new ResponseEntity<>(categoryResponse, HttpStatus.CREATED);
@@ -39,7 +40,7 @@ public class CategoryController implements CategoryBase {
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<CategoryResponse> update(@PathVariable(value = "id") @NotNull Long id,
-                                    @Valid @RequestBody CategoryRequest requestModel) {
+                                                   @Valid @RequestBody CategoryRequest requestModel) {
 
         logger.debug("handle update category, id:{}, model: {}", id, requestModel);
 
@@ -62,7 +63,7 @@ public class CategoryController implements CategoryBase {
     @Override
     @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteItem(@PathVariable(value = "id") @NotNull Long id) {
-        logger.debug("handle delete category request, id:{}",id);
+        logger.debug("handle delete category request, id:{}", id);
         categoryService.deletePrice(id);
         return ResponseEntity.accepted().build();
     }
@@ -70,7 +71,7 @@ public class CategoryController implements CategoryBase {
     @Override
     @GetMapping(value = "/{id}")
     public ResponseEntity<CategoryResponse> getById(@PathVariable(value = "id") Long id) {
-        logger.debug("handle get category by id: {}",id);
+        logger.debug("handle get category by id: {}", id);
 
         CategoryResponse categoryResponse = categoryService.getById(id);
         return ResponseEntity.ok(categoryResponse);
@@ -79,6 +80,8 @@ public class CategoryController implements CategoryBase {
     @Override
     @GetMapping(value = "/list")
     public ResponseEntity<CategoryResponseList> list() {
+        logger.info("get list");
+
         CategoryResponseList categories = categoryService.getAll();
         return ResponseEntity.ok(categories);
     }

@@ -2,10 +2,11 @@ package com.se.product.service.service;
 
 import com.se.product.service.model.CategoriesRequest;
 import com.se.product.service.model.PricesRequest;
+import com.se.product.service.model.ProductItemResponse;
 import com.se.product.service.model.payload.ProductRequest;
 import com.se.product.service.model.payload.ProductResponse;
-
-import javax.validation.constraints.NotNull;
+import com.se.product.service.model.payload.PagedProductSearchRequest;
+import org.springframework.data.domain.Page;
 
 public interface ProductService {
     ProductResponse create(ProductRequest product);
@@ -17,4 +18,8 @@ public interface ProductService {
     ProductResponse updateCategories(Long id, CategoriesRequest categoriesRequest);
 
     ProductResponse updatePrices(Long id, PricesRequest pricesRequest);
+
+    Page<ProductItemResponse> getPaged(PagedProductSearchRequest searchRequest);
+
+    ProductResponse get(Long id);
 }
