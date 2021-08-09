@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,9 +29,25 @@ public class Category {
     @Column(unique = true)
     private Long baseCategory;
 
-    // TODO: move to many-to-many
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = true)
-    private Product product;
+    @ManyToMany
+    @JoinTable(name="product_category",
+            joinColumns=@JoinColumn(name="category_id"),
+            inverseJoinColumns=@JoinColumn(name="product_id"))
+    private Set<Product> products;
 
+//    // TODO: move to many-to-many
+//    @ManyToOne
+//    @JoinColumn(name = "product_id", nullable = true)
+//    private Product product;
+
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", baseCategory=" + baseCategory +
+                '}';
+    }
 }

@@ -45,7 +45,9 @@ public interface ProductMapper {
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "id", source = "id"),
             @Mapping(source = "categories", target = "categories", qualifiedByName = "categoriesToStringSet"),
-            @Mapping(source = "prices", target = "prices", qualifiedByName = "pricesToStringSet")
+//            @Mapping(source = "prices", target = "prices", qualifiedByName = "pricesToStringSet")
+
+    @Mapping(target = "prices", ignore = true)
     })
     ProductResponse toProductResponse(Product product);
 

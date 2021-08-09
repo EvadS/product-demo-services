@@ -15,12 +15,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for product complex type.
+ * <p>Java class for category complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="product">
+ * &lt;complexType name="category">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -36,12 +36,12 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "product", propOrder = {
+@XmlType(name = "category", propOrder = {
     "id",
     "name",
     "code"
 })
-public class Product {
+public class Category {
 
     protected long id;
     @XmlElement(required = true)

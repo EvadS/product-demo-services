@@ -5,6 +5,7 @@ import com.se.product.service.validation.annotation.NullOrNotBlank;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
+
 
 @Entity
 @Table(name = "product")
@@ -30,21 +32,23 @@ public class Product  extends DateAudit {
             ,fetch = FetchType.LAZY )
     private Set<Price> prices = new HashSet<>();
 
-    @OneToMany(mappedBy = "product"
-            ,fetch = FetchType.EAGER )
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name="product_category",
+            joinColumns=@JoinColumn (name="product_id"),
+            inverseJoinColumns=@JoinColumn(name="category_id"))
     private Set<Category> categories = new HashSet<>();
 
+
+
     public void addCategory(Category category) {
-        if(categories==null){
-            categories  = new HashSet<>();
+        if(this.categories==null){
+            this.categories  = new HashSet<>();
         }
-        categories.add(category);
-        category.setProduct(this);
+        this.categories.add(category);;
     }
 
     public void removeCategory(Category category) {
-        categories.remove(category);
-        category.setProduct(null);
+        this.categories.remove(category);
     }
 
     public void addPrice(Price price) {
@@ -58,5 +62,14 @@ public class Product  extends DateAudit {
     public void removePrice(Price comment) {
         prices.remove(comment);
         comment.setProduct(null);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", categories=" + categories +
+                '}';
     }
 }

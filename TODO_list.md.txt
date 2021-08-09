@@ -18,4 +18,7 @@
 8 soap communication 
 9 Entitymanager 
 
+
+10 user service as separated microsservice 
+
  

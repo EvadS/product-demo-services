@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="product" type="{http://www.service.product.se.com/model/soap}product"/>
+ *         &lt;element name="category" type="{http://www.service.product.se.com/model/soap}category"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "product"
+    "category"
 })
-@XmlRootElement(name = "getProductResponse")
-public class GetProductResponse {
+@XmlRootElement(name = "getCategoryResponse")
+public class GetCategoryResponse {
 
     @XmlElement(required = true)
-    protected Product product;
+    protected Category category;
 
     /**
-     * Gets the value of the product property.
+     * Gets the value of the category property.
      * 
      * @return
      *     possible object is
-     *     {@link Product }
+     *     {@link Category }
      *     
      */
-    public Product getProduct() {
-        return product;
+    public Category getCategory() {
+        return category;
     }
 
     /**
-     * Sets the value of the product property.
+     * Sets the value of the category property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Product }
+     *     {@link Category }
      *     
      */
-    public void setProduct(Product value) {
-        this.product = value;
+    public void setCategory(Category value) {
+        this.category = value;
     }
 
 }

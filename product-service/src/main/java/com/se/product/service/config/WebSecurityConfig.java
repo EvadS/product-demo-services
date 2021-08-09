@@ -76,31 +76,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/",
-                		"/favicon.ico",
-                        "/**/*.json",
-                        "/**/*.xml",
-                        "/**/*.properties",
-                        "/**/*.woff2",
-                        "/**/*.woff",
-                        "/**/*.ttf",
-                        "/**/*.ttc",
-                        "/**/*.ico",
-                        "/**/*.bmp",
-                        "/**/*.png",
-                        "/**/*.gif",
-                        "/**/*.svg",
-                        "/**/*.jpg",
-                        "/**/*.jpeg",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js").permitAll()
-                .antMatchers("/**/api/auth/**").permitAll()
-                .antMatchers("/**/ws/**").permitAll()
-                .antMatchers("/price/**").permitAll()
-                .antMatchers("/api/**").permitAll()
-                .antMatchers("/api/product**").permitAll()
 
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/",
+//                		"/favicon.ico",
+//                        "/**/*.json",
+//                        "/**/*.xml",
+//                        "/**/*.properties",
+//                        "/**/*.woff2",
+//                        "/**/*.woff",
+//                        "/**/*.ttf",
+//                        "/**/*.ttc",
+//                        "/**/*.ico",
+//                        "/**/*.bmp",
+//                        "/**/*.png",
+//                        "/**/*.gif",
+//                        "/**/*.svg",
+//                        "/**/*.jpg",
+//                        "/**/*.jpeg",
+//                        "/**/*.html",
+//                        "/**/*.css",
+//                        "/**/*.js").permitAll()
+//                .antMatchers("/**/api/auth/**").permitAll()
+//                .antMatchers("/**/ws/**").permitAll()
+//                .antMatchers("/price/**").permitAll()
+//                .antMatchers("/api/**").permitAll()
+//                .antMatchers("/api/product**").permitAll()
+//
 
                 //TODO: temporary solution to test ws
                 .anyRequest().authenticated();

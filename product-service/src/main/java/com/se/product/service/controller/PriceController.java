@@ -18,10 +18,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-import static com.se.product.service.config.ApplicationConstant.API_VERSION;
 
 @RestController
-@RequestMapping("/api/price" + API_VERSION)
+@RequestMapping("/price")
 public class PriceController implements PriceApi {
 
     private static Logger logger = LoggerFactory.getLogger(PriceController.class);
